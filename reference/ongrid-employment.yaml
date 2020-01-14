@@ -4,9 +4,9 @@ info:
   description: ''
   termsOfService: 'https://ongrid.in/#/tnc'
   contact:
-    name: Piyush
     email: contact@ongrid.in
     url: 'https://ongrid.in/'
+    name: Piyush
   version: v1.0
 servers:
   - url: 'https://api.ongrid.in'
@@ -15,7 +15,9 @@ paths:
   /app/v1/records/publish:
     post:
       summary: Publish a new employment record
-      description: ''
+      description: |-
+        This API is used to create a new employment record.
+        SchemaCode - EMP
       operationId: writeRecord
       requestBody:
         content:
@@ -269,7 +271,7 @@ components:
         - consentText
         - hasConsent
       tags:
-          - Employment Models
+        - Employment Models
     SearchRequest:
       required:
         - consentText
@@ -295,7 +297,7 @@ components:
           type: boolean
       title: Search Request
       tags:
-          - Employment Models
+        - Employment Models
     ResponseObjectSearchResponse:
       type: object
       properties:
@@ -330,7 +332,7 @@ components:
           format: float
       title: Search Record Response
       tags:
-          - Employment Models
+        - Employment Models
     SearchResponse:
       type: object
       title: Search Response
@@ -343,7 +345,7 @@ components:
           items:
             $ref: '#/components/schemas/SearchRecordResponse'
       tags:
-          - Employment Models
+        - Employment Models
     ReadRequest:
       type: object
       title: Read Request
@@ -367,11 +369,11 @@ components:
         - consentText
         - hasConsent
       tags:
-          - Employment Models
+        - Employment Models
     ReadResponse:
       type: object
       tags:
-          - Employment Models
+        - Employment Models
     ResponseObjectReadResponse:
       type: object
       properties:
@@ -389,7 +391,7 @@ components:
         errorMessage:
           type: string
       tags:
-          - Employment Models
+        - Employment Models
     EmploymentRecord:
       properties:
         annualCompensation:
@@ -450,7 +452,7 @@ components:
       title: Employment Record
       description: For more detail refer to Employment record JSON Schema
       tags:
-          - Employment Models
+        - Employment Models
   securitySchemes:
     API Key - 1:
       type: http

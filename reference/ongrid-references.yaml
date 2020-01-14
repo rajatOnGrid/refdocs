@@ -1,41 +1,7 @@
 openapi: 3.0.1
 info:
   title: Reference Records - APIs
-  description: |-
-    **Pre-configured tags for anchor organizations**
-
-    | **Tag ID** | **Tag Text**                                 | **Tag ID** | **Tag Text**                                                             |
-    | ---------- | -------------------------------------------- | ---------- | ------------------------------------------------------------------------ |
-    | 10001      | Normal or usual exit / deboarding            | 20001      | Not recommended                                                          |
-    | 10002      | Highly recommended                           | 20002      | Not eligible for re-hire                                                 |
-    | 10003      | Recommended                                  | 20003      | Deboarded and / or fired by us                                           |
-    | 10004      | Eligible for re-hire, and / or re-onboarding | 20004      | Blacklisted by us                                                        |
-    | 10005      | Very hardworking                             | 20005      | Absconding                                                               |
-    | 10006      | Very good communication skills               | 20006      | Absconding after company policy violation                                |
-    | 10007      | Very strong analytical ability               | 20007      | Absconding after severe company policy violation                         |
-    | 10008      | Very disciplined                             | 20008      | Absconding after abusive and / or violent incident                       |
-    | 10009      | Highly ethical                               | 20009      | Absconding with company inventory                                        |
-    | 10010      | Hardworking                                  | 20010      | Incident (s) of abusive or violent behavior                              |
-    | 10011      | Good communication skills                    | 20011      | Incident (s) of company policy violations                                |
-    | 10012      | Strong analytical ability                    | 20012      | Incident(s) of fraud or forgery                                          |
-    | 10013      | Disciplined                                  | 20013      | Incident(s) of theft                                                     |
-    | 10014      | Ethical                                      | 20014      | Incident(s) of customer / end-user harassment                            |
-    | 10015      | Was a great asset to our organization        | 20015      | Incident(s) of sexual harassment                                         |
-    | 10016      | Very quick learner                           | 20016      | Incident(s) of violent crime                                             |
-    | 10017      | Quick learner                                | 20017      | Severe incident of customer / end-user harassment                        |
-    | 10018      | Highly committed to our organization growth  | 20018      | Severe incident of sexual harassment                                     |
-    | 10019      | Committed to our organization growth         | 20019      | Incident(s) of violating privacy of co-workers or customer / end-user    |
-    | 10020      | Has the ability to get things done           | 20020      | Frequent complaints from customer(s) / end-user(s)                       |
-    | 10021      | Creates a positive atmosphere at workplace   | 20021      | Frequent complaints from co-workers / other employees or peers           |
-    | 10022      | Helps and coaches peers and juniors          | 20022      | Incident(s) of threat(s) made to customer(s) / end-user(s)               |
-    | 10023      | Highly efficient                             | 20023      | Severe incident of violent crime                                         |
-    | 10024      | Efficient                                    | 20024      | Incident(s) of threat(s) made to co-workers / other employees or peers   |
-    | 10025      | Great people skills                          | 20025      | Incident(s) of indecent or lewd behavior                                 |
-    | 10026      | Good people skills                           | 20026      | Incident(s) of indecent or lewd behavior targeted at customer / end-user |
-    | 10027      | Very high quality work                       | 20027      | One or more performance issue(s)                                         |
-    | 10028      | High quality work                            | 20028      | One or more integrity-related issue(s)                                   |
-    | 10029      | Very high speed of execution                 | 20029      | One or more discipline-related issue(s)                                  |
-    | 10030      | High speed of execution                      | 20030      | Did not serve notice period                                              |
+  description: "## HOW IT WORKS\n\n- **Integrate APIs**\nAPIs to read and write references that can be integrated with the HRMS, Onboarding or Exit management systems. References can also be written and read using a web portal.\n\n\n- **Write reference**\nUsers can provide basic details like Name, ID, Date of Birth, Mobile number, and can write a reference  while deboarding an employee / contractor / provider / platform partner.\n\n- **Read reference**\nBased on a unique combination of basic details i.e. Name, ID, Date of Birth, and Mobile number, system will search for references written. If found, user can view reference and also download the reference report from the portal. \n\n\n\n**Pre-configured tags for anchor organizations**\n\n| **Tag ID** | **Tag Text**                                 | **Tag ID** | **Tag Text**                                                             |\n| ---------- | -------------------------------------------- | ---------- | ------------------------------------------------------------------------ |\n| 10001      | Normal or usual exit / deboarding            | 20001      | Not recommended                                                          |\n| 10002      | Highly recommended                           | 20002      | Not eligible for re-hire                                                 |\n| 10003      | Recommended                                  | 20003      | Deboarded and / or fired by us                                           |\n| 10004      | Eligible for re-hire, and / or re-onboarding | 20004      | Blacklisted by us                                                        |\n| 10005      | Very hardworking                             | 20005      | Absconding                                                               |\n| 10006      | Very good communication skills               | 20006      | Absconding after company policy violation                                |\n| 10007      | Very strong analytical ability               | 20007      | Absconding after severe company policy violation                         |\n| 10008      | Very disciplined                             | 20008      | Absconding after abusive and / or violent incident                       |\n| 10009      | Highly ethical                               | 20009      | Absconding with company inventory                                        |\n| 10010      | Hardworking                                  | 20010      | Incident (s) of abusive or violent behavior                              |\n| 10011      | Good communication skills                    | 20011      | Incident (s) of company policy violations                                |\n| 10012      | Strong analytical ability                    | 20012      | Incident(s) of fraud or forgery                                          |\n| 10013      | Disciplined                                  | 20013      | Incident(s) of theft                                                     |\n| 10014      | Ethical                                      | 20014      | Incident(s) of customer / end-user harassment                            |\n| 10015      | Was a great asset to our organization        | 20015      | Incident(s) of sexual harassment                                         |\n| 10016      | Very quick learner                           | 20016      | Incident(s) of violent crime                                             |\n| 10017      | Quick learner                                | 20017      | Severe incident of customer / end-user harassment                        |\n| 10018      | Highly committed to our organization growth  | 20018      | Severe incident of sexual harassment                                     |\n| 10019      | Committed to our organization growth         | 20019      | Incident(s) of violating privacy of co-workers or customer / end-user    |\n| 10020      | Has the ability to get things done           | 20020      | Frequent complaints from customer(s) / end-user(s)                       |\n| 10021      | Creates a positive atmosphere at workplace   | 20021      | Frequent complaints from co-workers / other employees or peers           |\n| 10022      | Helps and coaches peers and juniors          | 20022      | Incident(s) of threat(s) made to customer(s) / end-user(s)               |\n| 10023      | Highly efficient                             | 20023      | Severe incident of violent crime                                         |\n| 10024      | Efficient                                    | 20024      | Incident(s) of threat(s) made to co-workers / other employees or peers   |\n| 10025      | Great people skills                          | 20025      | Incident(s) of indecent or lewd behavior                                 |\n| 10026      | Good people skills                           | 20026      | Incident(s) of indecent or lewd behavior targeted at customer / end-user |\n| 10027      | Very high quality work                       | 20027      | One or more performance issue(s)                                         |\n| 10028      | High quality work                            | 20028      | One or more integrity-related issue(s)                                   |\n| 10029      | Very high speed of execution                 | 20029      | One or more discipline-related issue(s)                                  |\n| 10030      | High speed of execution                      | 20030      | Did not serve notice period                                              |"
   termsOfService: 'https://ongrid.in/#/tnc'
   contact:
     name: Piyush
@@ -353,7 +319,18 @@ components:
     UnificationParamsDTO:
       type: object
       title: Personal Identifiable Information
-      description: 'Used to identify person, against whom record is being written or searched. Currently supported values are NAME, DOB (in format YYYYMMDD), PHONE (9999999999), PAN (PAN number), VID (Voter ID number), PP (Passport number) and DL (Driving License number).'
+      description: |-
+        Used to identify person, against whom record is being written or searched. Currently supported values are:
+
+        |  Name | Value Fomat  |
+        | ------------ | ------------ |
+        |   NAME | Without saluation |
+        |   DOB | YYYYMMDD |
+        |   PHONE | 10 digit mobile number |
+        |   PAN | Valid PAN ID |
+        |   PP | Valid Passport ID |
+        |   DL | Valid Driving License ID |
+        |   VID | Valid Voter Card ID |
       properties:
         name:
           type: string
@@ -401,7 +378,10 @@ components:
         hasConsent:
           type: boolean
       title: Write Request
-      description: Schema code and record must be same ie. if schema code is EMP then record must be validated against EMP JSON schema.
+      description: |
+        ***schemaCode*** must be **REF**
+
+        ***record*** should be a valid (JSON against schema)[https://stoplight.io/p/docs/gh/rajatongrid/refdocs/models/reference-schema.json]
     ResponseObjectWriteResponse:
       type: object
       properties:
@@ -421,7 +401,7 @@ components:
     WriteResponse:
       type: object
       title: Write Response
-      description: ''
+      description: Response for write record API
       properties:
         recordId:
           type: string

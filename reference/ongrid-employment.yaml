@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: OnGrid References
+  title: Employment Records APIs
   description: ''
   termsOfService: 'https://ongrid.in/#/tnc'
   contact:

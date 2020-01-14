@@ -1,0 +1,117 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "JSON schema used to validate employment record",
+  "x-examples": {
+    "Sample": {
+      "annualCompensation" : 1000000,
+      "currency" : "INR",
+      "employeeId" : "ABC100121",
+      "employeePhone" : "9999999999",
+      "employerName" : "ABC PVT. LTD.",
+      "associationType" : "Employee",
+      "jobDescription" : "Work as Team lead for Dev-ops team",
+      "joiningDate" : "2000-01-01",
+      "lastDesignation" : "Senior Software Engineer",
+      "lastWorkingCity" : "Delhi",
+      "lastWorkingDate" : "2020-01-01",
+      "managerName" : "Shyam Kumar",
+      "managerEmail" : "shyam@abc.in",
+      "managerPhone" : "8888888888",
+      "nameAsPerEmployerRecords" : "Ram Kumar"
+    }
+  },
+  "title": "Employment record JSON Schema",
+  "properties": {
+    "annualCompensation": {
+      "minimum": 0,
+      "type": "integer",
+      "description": "CTC of the employee"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency used to denote CTC"
+    },
+    "employeeId": {
+      "maxLength": 20,
+      "minLength": 3,
+      "type": "string",
+      "description": "Employee ID"
+    },
+    "employeePhone": {
+      "type": "string",
+      "description": "Phone number of employee"
+    },
+    "employerName": {
+      "maxLength": 100,
+      "minLength": 3,
+      "type": "string",
+      "description": "Employer name"
+    },
+    "associationType": {
+      "type": "string",
+      "enum": [
+        "Employee",
+        "Contractor",
+        "ServiceProvider",
+        "PlatformPartner",
+        "Other"
+      ],
+      "description": "Assoication type"
+    },
+    "jobDescription": {
+      "maxLength": 200,
+      "minLength": 3,
+      "type": "string",
+      "description": "Job description"
+    },
+    "joiningDate": {
+      "format": "date",
+      "type": "string",
+      "description": "Joining date"
+    },
+    "lastDesignation": {
+      "maxLength": 50,
+      "minLength": 2,
+      "type": "string",
+      "description": "Last designation"
+    },
+    "lastWorkingCity": {
+      "maxLength": 50,
+      "minLength": 3,
+      "type": "string",
+      "description": "Last working city"
+    },
+    "lastWorkingDate": {
+      "format": "date",
+      "type": "string",
+      "description": "Last working date"
+    },
+    "managerName": {
+      "format": "email",
+      "type": "string",
+      "description": "Name of manager"
+    },
+    "managerEmail": {
+      "format": "email",
+      "type": "string",
+      "description": "Email-id of manager"
+    },
+    "managerPhone": {
+      "type": "string",
+      "description": "Phone number of manager"
+    },
+    "nameAsPerEmployerRecords": {
+      "maxLength": 50,
+      "minLength": 3,
+      "type": "string",
+      "description": "Name of employee as per company records"
+    }
+  },
+  "required": [
+    "employeeId",
+    "employerName",
+    "joiningDate",
+    "nameAsPerEmployerRecords"
+  ]
+}

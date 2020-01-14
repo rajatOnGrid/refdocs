@@ -1,0 +1,433 @@
+openapi: 3.0.1
+info:
+  title: OnGrid References
+  description: ''
+  termsOfService: 'https://ongrid.in/#/tnc'
+  contact:
+    name: Piyush
+    email: contact@ongrid.in
+    url: 'https://ongrid.in/'
+  version: v1.0
+servers:
+  - url: 'https://api.ongrid.in'
+    description: URL
+paths:
+  /app/v1/records/publish:
+    post:
+      summary: Publish a new employment record
+      description: ''
+      operationId: writeRecord
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WriteRequest'
+      responses:
+        '200':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObjectWriteResponse'
+        '400':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObject'
+        '500':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObject'
+      tags:
+        - Employment Record
+  /app/v1/records/revise:
+    post:
+      summary: Update an existing employment record
+      operationId: updateRecord
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRequest'
+      responses:
+        '200':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObjectWriteResponse'
+        '400':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObject'
+        '500':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObject'
+      tags:
+        - Employment Record
+  /app/v1/records/search:
+    post:
+      summary: Search for a employment record
+      operationId: searchRecords
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObjectSearchResponse'
+        '400':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObject'
+        '500':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObject'
+      tags:
+        - Employment Record
+  /app/v1/records/fetch:
+    post:
+      summary: Read a employment record
+      operationId: readRecords
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReadRequest'
+      responses:
+        '200':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObjectReadResponse'
+        '400':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObject'
+        '500':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObject'
+      tags:
+        - Employment Record
+components:
+  schemas:
+    ResponseObject:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        data:
+          type: object
+        statusCode:
+          type: integer
+          format: int32
+        errorCode:
+          type: integer
+          format: int32
+        errorMessage:
+          type: string
+      description: ''
+      title: Response Object
+    UnificationParamsDTO:
+      type: object
+      title: Personal Identifiable Information
+      description: 'Used to identify person, against whom record is being written or searched. Currently supported values are NAME, DOB (in format YYYYMMDD), PHONE (9999999999), PAN (PAN number), VID (Voter ID number), PP (Passport number) and DL (Driving License number).'
+      properties:
+        name:
+          type: string
+          enum:
+            - NAME
+            - DOB
+            - PAN
+            - VID
+            - PP
+            - AN
+            - PHONE
+            - DL
+        value:
+          type: string
+          minLength: 1
+        metadata:
+          type: object
+          additionalProperties:
+            type: object
+      required:
+        - name
+        - value
+    WriteRequest:
+      type: object
+      title: Write Request
+      description: Schema code and record must be same ie. if schema code is EMP then record must be validated against EMP JSON schema.
+      properties:
+        criteria:
+          type: array
+          items:
+            $ref: '#/components/schemas/UnificationParamsDTO'
+        record:
+          $ref: '#/components/schemas/EmploymentRecord'
+        schemaCode:
+          type: string
+          enum:
+            - REF
+            - EMP
+        consentText:
+          type: string
+        hasConsent:
+          type: boolean
+      required:
+        - criteria
+        - record
+        - schemaCode
+        - consentText
+        - hasConsent
+    ResponseObjectWriteResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        data:
+          $ref: '#/components/schemas/WriteResponse'
+        statusCode:
+          type: integer
+          format: int32
+        errorCode:
+          type: integer
+          format: int32
+        errorMessage:
+          type: string
+    WriteResponse:
+      type: object
+      title: Write Response
+      description: ''
+      properties:
+        recordId:
+          type: string
+          description: Id of the record published
+        recordVersion:
+          type: integer
+          format: int32
+          description: Version of the record published
+        schemaCode:
+          type: string
+          description: Schema code of the record published
+        schemaVersion:
+          type: integer
+          format: int32
+          description: Schema version of the record published
+    UpdateRequest:
+      type: object
+      title: Update Request
+      properties:
+        record:
+          $ref: '#/components/schemas/EmploymentRecord'
+        recordId:
+          type: string
+        consentText:
+          type: string
+        hasConsent:
+          type: boolean
+      required:
+        - record
+        - recordId
+        - consentText
+        - hasConsent
+    SearchRequest:
+      required:
+        - consentText
+        - criteria
+        - hasConsent
+        - schemaCodes
+      type: object
+      properties:
+        criteria:
+          type: array
+          items:
+            $ref: '#/components/schemas/UnificationParamsDTO'
+        schemaCodes:
+          type: array
+          items:
+            type: string
+            enum:
+              - REF
+              - EMP
+        consentText:
+          type: string
+        hasConsent:
+          type: boolean
+      title: Search Request
+    ResponseObjectSearchResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        data:
+          $ref: '#/components/schemas/SearchResponse'
+        statusCode:
+          type: integer
+          format: int32
+        errorCode:
+          type: integer
+          format: int32
+        errorMessage:
+          type: string
+    SearchRecordResponse:
+      type: object
+      properties:
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        recordId:
+          type: string
+        cost:
+          type: number
+          format: float
+      title: Search Record Response
+    SearchResponse:
+      type: object
+      title: Search Response
+      properties:
+        searchId:
+          type: string
+          description: Search Id
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchRecordResponse'
+    ReadRequest:
+      type: object
+      title: Read Request
+      description: Parameters to be send to read one or multiple records
+      properties:
+        recordIds:
+          type: array
+          description: List of record-Id(s) from search API response
+          items:
+            type: string
+        searchId:
+          type: string
+          description: Search Id rom response of Search API
+        consentText:
+          type: string
+        hasConsent:
+          type: boolean
+      required:
+        - recordIds
+        - searchId
+        - consentText
+        - hasConsent
+    ReadResponse:
+      type: object
+    ResponseObjectReadResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        data:
+          $ref: '#/components/schemas/ReadResponse'
+        statusCode:
+          type: integer
+          format: int32
+        errorCode:
+          type: integer
+          format: int32
+        errorMessage:
+          type: string
+    EmploymentRecord:
+      properties:
+        annualCompensation:
+          format: int32
+          type: integer
+        associationType:
+          enum:
+            - Employee
+            - Contractor
+            - ServiceProvider
+            - PlatformPartner
+            - Other
+          type: string
+        currency:
+          type: string
+        employeeId:
+          maxLength: 20
+          minLength: 3
+          type: string
+        employeePhone:
+          type: string
+        employerName:
+          maxLength: 100
+          minLength: 3
+          type: string
+        jobDescription:
+          maxLength: 200
+          minLength: 3
+          type: string
+        joiningDate:
+          type: string
+        lastDesignation:
+          maxLength: 50
+          minLength: 2
+          type: string
+        lastWorkingCity:
+          maxLength: 50
+          minLength: 3
+          type: string
+        lastWorkingDate:
+          type: string
+        managerEmail:
+          type: string
+        managerName:
+          type: string
+        managerPhone:
+          type: string
+        nameAsPerEmployerRecords:
+          maxLength: 50
+          minLength: 3
+          type: string
+      required:
+        - employeeId
+        - employerName
+        - joiningDate
+        - nameAsPerEmployerRecords
+      type: object
+      title: Employment Record
+      description: For more detail refer to Employment record JSON Schema
+  securitySchemes:
+    API Key - 1:
+      type: http
+      scheme: Basic
+tags:
+  - name: Reference Record
+    description: description
+  - name: Employment Record
+    description: description

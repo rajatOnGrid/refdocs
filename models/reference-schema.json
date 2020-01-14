@@ -1,0 +1,225 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "JSON schema used to validate reference record",
+  "title": "Reference record JSON Schema",
+  "x-examples": {
+    "Sample": {
+      "associationFromDate": "2019-01-01",
+      "associationToDate": "2020-01-01",
+      "associationType": "Contractor",
+      "profession": "Driver",
+      "tagId": [
+        "1001",
+        "1002"
+      ],
+      "longReference": "Hardworking employee, always in time",
+      "personalTraits": [
+        {
+          "Hardwork": "Very High"
+        },
+        {
+          "Integrity": "High"
+        }
+      ],
+      "writerDesignation": "Manager",
+      "writerName": "Shyam Kumar",
+      "shortName": "ABC",
+      "entityName": "ABC PVT. LTD."
+    }
+  },
+  "properties": {
+    "associationFromDate": {
+      "type": "string",
+      "format": "date",
+      "description": "The time when the individual got associated with the organization"
+    },
+    "associationToDate": {
+      "type": "string",
+      "format": "date",
+      "description": "The time when the individual got disassociated with the organization"
+    },
+    "associationType": {
+      "type": "string",
+      "enum": [
+        "Employee",
+        "Contractor",
+        "ServiceProvider",
+        "PlatformPartner",
+        "Other"
+      ],
+      "description": "Association type"
+    },
+    "profession": {
+      "type": "string",
+      "maxLength": 100,
+      "minLength": 3,
+      "description": "Profession"
+    },
+    "tagId": {
+      "type": "array",
+      "minItems": 1,
+      "description": "This is a 5-digit tag ID provided to each reference tag. A master of tag ID’s and tag text descriptions will be maintained centrally, and will be available to participating users via API’s and platform documentation.",
+      "items": {
+        "type": "string",
+        "enum": [
+          "10001",
+          "10002",
+          "10003",
+          "10004",
+          "10005",
+          "10006",
+          "10007",
+          "10008",
+          "10009",
+          "10010",
+          "10011",
+          "10012",
+          "10013",
+          "10014",
+          "10015",
+          "10016",
+          "10017",
+          "10018",
+          "10019",
+          "10020",
+          "10021",
+          "10022",
+          "10023",
+          "10024",
+          "10025",
+          "10026",
+          "10027",
+          "10028",
+          "10029",
+          "10030",
+          "20001",
+          "20002",
+          "20003",
+          "20004",
+          "20005",
+          "20006",
+          "20007",
+          "20008",
+          "20009",
+          "20010",
+          "20011",
+          "20012",
+          "20013",
+          "20014",
+          "20015",
+          "20016",
+          "20017",
+          "20018",
+          "20019",
+          "20020",
+          "20021",
+          "20022",
+          "20023",
+          "20024",
+          "20025",
+          "20026",
+          "20027",
+          "20028",
+          "20029",
+          "20030"
+        ]
+      }
+    },
+    "longReference": {
+      "type": "string",
+      "maxLength": 500,
+      "minLength": 20,
+      "description": "This is a longer form of reference, typically written by a human or read by a human"
+    },
+    "personalTraits": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "Hardwork": {
+            "type": "string",
+            "enum": [
+              "VeryHigh",
+              "High",
+              "Medium",
+              "Low",
+              "VeryLow"
+            ]
+          },
+          "AnalyticalAbility": {
+            "type": "string",
+            "enum": [
+              "VeryHigh",
+              "High",
+              "Medium",
+              "Low",
+              "VeryLow"
+            ]
+          },
+          "Discipline": {
+            "type": "string",
+            "enum": [
+              "VeryHigh",
+              "High",
+              "Medium",
+              "Low",
+              "VeryLow"
+            ]
+          },
+          "Communication": {
+            "type": "string",
+            "enum": [
+              "VeryHigh",
+              "High",
+              "Medium",
+              "Low",
+              "VeryLow"
+            ]
+          },
+          "Integrity": {
+            "type": "string",
+            "enum": [
+              "VeryHigh",
+              "High",
+              "Medium",
+              "Low",
+              "VeryLow"
+            ]
+          }
+        }
+      }
+    },
+    "entityName": {
+      "type": "string",
+      "maxLength": 100,
+      "minLength": 3,
+      "description": "Name of legal entity (organization) writing the reference"
+    },
+    "shortName": {
+      "type": "string",
+      "maxLength": 100,
+      "minLength": 3,
+      "description": "Company name"
+    },
+    "writerName": {
+      "type": "string",
+      "maxLength": 100,
+      "minLength": 3,
+      "description": "Name of the person who is writing this record"
+    },
+    "writerDesignation": {
+      "type": "string",
+      "maxLength": 100,
+      "minLength": 3,
+      "description": "Designation of person who is writing this record"
+    }
+  },
+  "required": [
+    "tagId",
+    "entityName",
+    "writerName",
+    "writerDesignation"
+  ]
+}

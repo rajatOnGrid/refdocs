@@ -1,0 +1,537 @@
+openapi: 3.0.1
+info:
+  title: OnGrid References
+  description: ''
+  termsOfService: 'https://ongrid.in/#/tnc'
+  contact:
+    name: Piyush
+    email: contact@ongrid.in
+    url: 'https://ongrid.in/'
+  version: v1.0
+servers:
+  - url: 'https://api.ongrid.in'
+    description: URL
+paths:
+  /app/v1/records/publish:
+    post:
+      summary: Publish a new reference record
+      description: ''
+      operationId: writeRecord
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WriteRequest'
+      responses:
+        '200':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObjectWriteResponse'
+        '400':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObject'
+        '500':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObject'
+      tags:
+        - Reference Record
+  /app/v1/records/revise:
+    post:
+      summary: Update an existing reference record
+      operationId: updateRecord
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRequest'
+      responses:
+        '200':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObjectWriteResponse'
+        '400':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObject'
+        '500':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObject'
+      tags:
+        - Reference Record
+  /app/v1/records/search:
+    post:
+      summary: Search for a reference record
+      operationId: searchRecords
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObjectSearchResponse'
+        '400':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObject'
+        '500':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObject'
+      tags:
+        - Reference Record
+  /app/v1/records/fetch:
+    post:
+      summary: Read a reference record
+      operationId: readRecords
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReadRequest'
+      responses:
+        '200':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObjectReadResponse'
+        '400':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObject'
+        '500':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseObject'
+      tags:
+        - Reference Record
+components:
+  schemas:
+    ResponseObject:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        data:
+          type: object
+        statusCode:
+          type: integer
+          format: int32
+        errorCode:
+          type: integer
+          format: int32
+        errorMessage:
+          type: string
+      title: Response Object
+    PersonalTrait:
+      type: object
+      properties:
+        Hardwork:
+          type: string
+          enum:
+            - VeryHigh
+            - High
+            - Medium
+            - Low
+            - VeryLow
+        AnalyticalAbility:
+          type: string
+          enum:
+            - VeryHigh
+            - High
+            - Medium
+            - Low
+            - VeryLow
+        Discipline:
+          type: string
+          enum:
+            - VeryHigh
+            - High
+            - Medium
+            - Low
+            - VeryLow
+        Communication:
+          type: string
+          enum:
+            - VeryHigh
+            - High
+            - Medium
+            - Low
+            - VeryLow
+        Integrity:
+          type: string
+          enum:
+            - VeryHigh
+            - High
+            - Medium
+            - Low
+            - VeryLow
+      description: For more detail refer to Reference record JSON Schema
+      title: Personal Trait (part of reference record)
+    ReferenceRecord:
+      required:
+        - entityName
+        - tagId
+        - writerDesignation
+        - writerName
+      type: object
+      properties:
+        associationFromDate:
+          type: string
+        associationToDate:
+          type: string
+        associationType:
+          type: string
+          enum:
+            - Employee
+            - Contractor
+            - ServiceProvider
+            - PlatformPartner
+            - Other
+        profession:
+          maxLength: 100
+          minLength: 3
+          type: string
+        tagId:
+          maxItems: 2147483647
+          minItems: 1
+          type: array
+          items:
+            type: string
+            enum:
+              - '10001'
+              - '10002'
+              - '10003'
+              - '10004'
+              - '10005'
+              - '10006'
+              - '10007'
+              - '10008'
+              - '10009'
+              - '10010'
+              - '10011'
+              - '10012'
+              - '10013'
+              - '10014'
+              - '10015'
+              - '10016'
+              - '10017'
+              - '10018'
+              - '10019'
+              - '10020'
+              - '10021'
+              - '10022'
+              - '10023'
+              - '10024'
+              - '10025'
+              - '10026'
+              - '10027'
+              - '10028'
+              - '10029'
+              - '10030'
+              - '20001'
+              - '20002'
+              - '20003'
+              - '20004'
+              - '20005'
+              - '20006'
+              - '20007'
+              - '20008'
+              - '20009'
+              - '20010'
+              - '20011'
+              - '20012'
+              - '20013'
+              - '20014'
+              - '20015'
+              - '20016'
+              - '20017'
+              - '20018'
+              - '20019'
+              - '20020'
+              - '20021'
+              - '20022'
+              - '20023'
+              - '20024'
+              - '20025'
+              - '20026'
+              - '20027'
+              - '20028'
+              - '20029'
+              - '20030'
+        longReference:
+          maxLength: 500
+          minLength: 20
+          type: string
+        personalTraits:
+          maxItems: 2147483647
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/PersonalTrait'
+        entityName:
+          maxLength: 100
+          minLength: 3
+          type: string
+        shortName:
+          maxLength: 100
+          minLength: 3
+          type: string
+        writerName:
+          maxLength: 100
+          minLength: 3
+          type: string
+        writerDesignation:
+          maxLength: 100
+          minLength: 3
+          type: string
+      title: Reference Record
+      description: For more detail refer to Reference record JSON Schema
+    UnificationParamsDTO:
+      type: object
+      title: Personal Identifiable Information
+      description: 'Used to identify person, against whom record is being written or searched. Currently supported values are NAME, DOB (in format YYYYMMDD), PHONE (9999999999), PAN (PAN number), VID (Voter ID number), PP (Passport number) and DL (Driving License number).'
+      properties:
+        name:
+          type: string
+          enum:
+            - NAME
+            - DOB
+            - PAN
+            - VID
+            - PP
+            - AN
+            - PHONE
+            - DL
+        value:
+          type: string
+          minLength: 1
+        metadata:
+          type: object
+          additionalProperties:
+            type: object
+      required:
+        - name
+        - value
+    WriteRequest:
+      required:
+        - consentText
+        - criteria
+        - hasConsent
+        - record
+        - schemaCode
+      type: object
+      properties:
+        criteria:
+          type: array
+          items:
+            $ref: '#/components/schemas/UnificationParamsDTO'
+        record:
+          $ref: '#/components/schemas/ReferenceRecord'
+        schemaCode:
+          type: string
+          enum:
+            - REF
+            - EMP
+        consentText:
+          type: string
+        hasConsent:
+          type: boolean
+      title: Write Request
+      description: Schema code and record must be same ie. if schema code is EMP then record must be validated against EMP JSON schema.
+    ResponseObjectWriteResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        data:
+          $ref: '#/components/schemas/WriteResponse'
+        statusCode:
+          type: integer
+          format: int32
+        errorCode:
+          type: integer
+          format: int32
+        errorMessage:
+          type: string
+    WriteResponse:
+      type: object
+      title: Write Response
+      description: ''
+      properties:
+        recordId:
+          type: string
+          description: Id of the record published
+        recordVersion:
+          type: integer
+          format: int32
+          description: Version of the record published
+        schemaCode:
+          type: string
+          description: Schema code of the record published
+        schemaVersion:
+          type: integer
+          format: int32
+          description: Schema version of the record published
+    UpdateRequest:
+      required:
+        - consentText
+        - hasConsent
+        - record
+        - recordId
+      type: object
+      properties:
+        record:
+          $ref: '#/components/schemas/ReferenceRecord'
+        recordId:
+          type: string
+        consentText:
+          type: string
+        hasConsent:
+          type: boolean
+      title: Update Request
+    SearchRequest:
+      required:
+        - consentText
+        - criteria
+        - hasConsent
+        - schemaCodes
+      type: object
+      properties:
+        criteria:
+          type: array
+          items:
+            $ref: '#/components/schemas/UnificationParamsDTO'
+        schemaCodes:
+          type: array
+          items:
+            type: string
+            enum:
+              - REF
+              - EMP
+        consentText:
+          type: string
+        hasConsent:
+          type: boolean
+      title: Search Request
+    ResponseObjectSearchResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        data:
+          $ref: '#/components/schemas/SearchResponse'
+        statusCode:
+          type: integer
+          format: int32
+        errorCode:
+          type: integer
+          format: int32
+        errorMessage:
+          type: string
+    SearchRecordResponse:
+      type: object
+      properties:
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        recordId:
+          type: string
+        cost:
+          type: number
+          format: float
+      title: Search Record Response
+    SearchResponse:
+      type: object
+      title: Search Response
+      properties:
+        searchId:
+          type: string
+          description: Search Id
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchRecordResponse'
+    ReadRequest:
+      type: object
+      title: Read Request
+      description: Parameters to be send to read one or multiple records
+      properties:
+        recordIds:
+          type: array
+          description: List of record-Id(s) from search API response
+          items:
+            type: string
+        searchId:
+          type: string
+          description: Search Id rom response of Search API
+        consentText:
+          type: string
+        hasConsent:
+          type: boolean
+      required:
+        - recordIds
+        - searchId
+        - consentText
+        - hasConsent
+    ReadResponse:
+      type: object
+    ResponseObjectReadResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        data:
+          $ref: '#/components/schemas/ReadResponse'
+        statusCode:
+          type: integer
+          format: int32
+        errorCode:
+          type: integer
+          format: int32
+        errorMessage:
+          type: string
+  securitySchemes:
+    API Key - 1:
+      type: http
+      scheme: Basic
+tags:
+  - name: Reference Record
+    description: description
+  - name: Employment Record
+    description: description

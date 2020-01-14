@@ -153,6 +153,8 @@ components:
           type: string
       description: ''
       title: Response Object
+      tags:
+        - Employment Models
     UnificationParamsDTO:
       type: object
       title: Personal Identifiable Information
@@ -179,6 +181,8 @@ components:
       required:
         - name
         - value
+      tags:
+        - Employment Models
     WriteRequest:
       type: object
       title: Write Request
@@ -205,6 +209,8 @@ components:
         - schemaCode
         - consentText
         - hasConsent
+      tags:
+        - Employment Models
     ResponseObjectWriteResponse:
       type: object
       properties:
@@ -221,6 +227,8 @@ components:
           format: int32
         errorMessage:
           type: string
+        tags:
+          - Employment Models
     WriteResponse:
       type: object
       title: Write Response
@@ -240,9 +248,12 @@ components:
           type: integer
           format: int32
           description: Schema version of the record published
+        tags:
+          - Employment Models
     UpdateRequest:
       type: object
       title: Update Request
+      description: ''
       properties:
         record:
           $ref: '#/components/schemas/EmploymentRecord'
@@ -257,6 +268,8 @@ components:
         - recordId
         - consentText
         - hasConsent
+      tags:
+          - Employment Models
     SearchRequest:
       required:
         - consentText
@@ -281,6 +294,8 @@ components:
         hasConsent:
           type: boolean
       title: Search Request
+      tags:
+          - Employment Models
     ResponseObjectSearchResponse:
       type: object
       properties:
@@ -297,6 +312,8 @@ components:
           format: int32
         errorMessage:
           type: string
+        tags:
+          - Employment Models
     SearchRecordResponse:
       type: object
       properties:
@@ -312,6 +329,8 @@ components:
           type: number
           format: float
       title: Search Record Response
+      tags:
+          - Employment Models
     SearchResponse:
       type: object
       title: Search Response
@@ -323,6 +342,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SearchRecordResponse'
+      tags:
+          - Employment Models
     ReadRequest:
       type: object
       title: Read Request
@@ -345,8 +366,12 @@ components:
         - searchId
         - consentText
         - hasConsent
+      tags:
+          - Employment Models
     ReadResponse:
       type: object
+      tags:
+          - Employment Models
     ResponseObjectReadResponse:
       type: object
       properties:
@@ -363,6 +388,8 @@ components:
           format: int32
         errorMessage:
           type: string
+      tags:
+          - Employment Models
     EmploymentRecord:
       properties:
         annualCompensation:
@@ -422,12 +449,14 @@ components:
       type: object
       title: Employment Record
       description: For more detail refer to Employment record JSON Schema
+      tags:
+          - Employment Models
   securitySchemes:
     API Key - 1:
       type: http
       scheme: Basic
 tags:
-  - name: Reference Record
-    description: description
+  - name: Employment Models
+    description: Models used in employment record APIs
   - name: Employment Record
-    description: description
+    description: API for employment records
